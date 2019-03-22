@@ -11,19 +11,21 @@ class App extends Component {
   componentDidMount() {
     axios.get('https://localhost:5001/api/Animals').then(resp => {
       let total = 0
+      let ltb = 0
       for (let i = 0; i < resp.length; i++) {
         if (
-          resp[i].species == 'lion' ||
-          resp[i].species == 'tiger' ||
-          resp[i].species == 'bear'
+          resp[i].species === 'lion' ||
+          resp[i].species === 'tiger' ||
+          resp[i].species === 'bear'
         ) {
-          ohMy += resp[i].countOfTimesSeen
+          ltb += resp[i].countOfTimesSeen
         }
         total += resp[i].countOfTimesSeen
       }
       this.setState({
         animals: resp,
-        totalAnimals: total
+        totalAnimals: total,
+        ohMy: ltb
       })
     })
   }
