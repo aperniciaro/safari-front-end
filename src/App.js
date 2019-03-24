@@ -44,11 +44,13 @@ class App extends Component {
   }
 
   getJungleAnimals = () => {
-    axios.get('https://localhost:5001/api/Animals/jungle').then(resp => {
-      this.setState({
-        jungleAnimals: resp.data
+    axios
+      .get('https://localhost:5001/api/Animals/location=jungle')
+      .then(resp => {
+        this.setState({
+          jungleAnimals: resp.data
+        })
       })
-    })
   }
 
   removeDesert = () => {
