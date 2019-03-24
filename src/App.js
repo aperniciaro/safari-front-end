@@ -13,7 +13,6 @@ class App extends Component {
       let total = 0
       let ltb = 0
       for (let i = 0; i < resp.data.length; i++) {
-        console.log(resp.data[i].id)
         if (
           resp.data[i].species === 'lion' ||
           resp.data[i].species === 'tiger' ||
@@ -51,7 +50,7 @@ class App extends Component {
         </ul>
         // Remove all animals that I have seen in the Desert.
         <h2>I've seen a total of {this.state.totalAnimals} animals</h2>
-        <h2>I've seen {this.state.ohMy} lion, tiger, and bears</h2>
+        <h2>I've seen {this.state.ohMy} lions, tigers, and bears</h2>
       </>
     )
   }
