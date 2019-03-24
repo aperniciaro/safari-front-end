@@ -27,6 +27,8 @@ li {
 }
 
 button {
+  height: 2rem;
+  width: 10rem;
   background-color: darkred;
   color: white;
 }
