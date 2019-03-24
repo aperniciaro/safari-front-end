@@ -11,6 +11,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getAnimals()
+  }
+
+  getAnimals = () => {
     axios.get('https://localhost:5001/api/Animals').then(resp => {
       let total = 0
       let lionCount = 0
@@ -36,10 +40,21 @@ class App extends Component {
     })
   }
 
+  removeDesert = () => {
+    for (let i = 0; i < this.state.animals.length; i++) {
+      if (this.state.animals[i].locationOfLastSeen === 'desert') {
+        axios.delete(
+          `https://localhost:5001/api/Animals/${this.state.animals[i].id}`
+        )
+      }
+    }
+    this.getAnimals()
+  }
+
   render() {
     return (
       <>
-        <h1>SAFARI</h1>
+        <h1>SAFARI TRACKER</h1>
         <h2>The animals I have seen: </h2>
         <ul>
           {this.state.animals.map(animal => {
@@ -54,7 +69,7 @@ class App extends Component {
             }
           })}
         </ul>
-        // Remove all animals that I have seen in the Desert.
+        <button onClick="removeDesert()">Remove Desert Sightings</button>
         <h2>I've seen a total of {this.state.totalAnimals} animals</h2>
         <h2>
           I've seen {this.state.countOfLions} lions, {this.state.countOfTigers}{' '}
