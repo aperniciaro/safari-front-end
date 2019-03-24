@@ -7,11 +7,13 @@ class App extends Component {
     totalAnimals: 0,
     countOfLions: 0,
     countOfTigers: 0,
-    countOfBears: 0
+    countOfBears: 0,
+    jungleAnimals: []
   }
 
   componentDidMount() {
     this.getAnimals()
+    this.getJungleAnimals()
     this.removeDesert()
   }
 
@@ -41,6 +43,14 @@ class App extends Component {
     })
   }
 
+  getJungleAnimals = () => {
+    axios.get('https://localhost:5001/api/Animals/jungle').then(resp => {
+      this.setState({
+        jungleAnimals: resp.data
+      })
+    })
+  }
+
   removeDesert = () => {
     for (let i = 0; i < this.state.animals.length; i++) {
       if (this.state.animals[i].locationOfLastSeen === 'desert') {
@@ -63,10 +73,8 @@ class App extends Component {
         </ul>
         <h2>In the jungle I saw: </h2>
         <ul>
-          {this.state.animals.map(animal => {
-            if (animal.locationOfLastSeen === 'jungle') {
-              return <li key={animal.id}>{animal.species}</li>
-            }
+          {this.state.jungleAnimals.map(animal => {
+            return <li key={animal.id}>{animal.species}</li>
           })}
         </ul>
         <h2>I've seen a total of {this.state.totalAnimals} animals</h2>
