@@ -7,6 +7,26 @@ html {
 }
 
 body {
-  margin: 0;
+  margin-left: 1rem;
   min-height: 100%;
+  background-color: darkolivegreen;
+  color: lightgreen;
+}
+
+h1 {
+  color: yellowgreen;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  color: lightgray;
+  margin-bottom: 0.25rem;
+}
+
+button {
+  background-color: darkred;
+  color: white;
 }
