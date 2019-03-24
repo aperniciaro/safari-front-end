@@ -10,18 +10,18 @@ class App extends Component {
 
   componentDidMount() {
     axios.get('https://localhost:5001/api/Animals').then(resp => {
-      console.log(resp.data)
       let total = 0
       let ltb = 0
       for (let i = 0; i < resp.data.length; i++) {
+        console.log(resp.data[i].id)
         if (
-          resp.data[i].Species === 'lion' ||
-          resp.data[i].Species === 'tiger' ||
-          resp.data[i].Species === 'bear'
+          resp.data[i].species === 'lion' ||
+          resp.data[i].species === 'tiger' ||
+          resp.data[i].species === 'bear'
         ) {
-          ltb += resp.data[i].CountOfTimesSeen
+          ltb += resp.data[i].countOfTimesSeen
         }
-        total += resp.data[i].CountOfTimesSeen
+        total += resp.data[i].countOfTimesSeen
       }
       this.setState({
         animals: resp.data,
@@ -38,14 +38,14 @@ class App extends Component {
         <h2>The animals I have seen: </h2>
         <ul>
           {this.state.animals.map(animal => {
-            return <li key={animal.Id}>{animal.Species}</li>
+            return <li key={animal.id}>{animal.species}</li>
           })}
         </ul>
         <h2>In the jungle I saw: </h2>
         <ul>
           {this.state.animals.map(animal => {
-            if (animal.LocationOfLastSeen === 'jungle') {
-              return <li key={animal.Id}>{animal.Species}</li>
+            if (animal.locationOfLastSeen === 'jungle') {
+              return <li key={animal.id}>{animal.species}</li>
             }
           })}
         </ul>
