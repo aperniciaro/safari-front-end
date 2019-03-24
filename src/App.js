@@ -69,7 +69,7 @@ class App extends Component {
             }
           })}
         </ul>
-        <button onClick="removeDesert()">Remove Desert Sightings</button>
+        <button onClick={this.removeDesert()}>Remove Desert Sightings</button>
         <h2>I've seen a total of {this.state.totalAnimals} animals</h2>
         <h2>
           I've seen {this.state.countOfLions} lions, {this.state.countOfTigers}{' '}
